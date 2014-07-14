@@ -17,7 +17,7 @@ $ErrorActionPreference = "SilentlyContinue"
 
 #region #******** INPUTS                                ********
 
-$myVCenter = "vcenter-prod"
+$myVCenter = "VCENTERNAME"
 
 #endregion #******** INPUTS                             ********
 
