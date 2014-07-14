@@ -2,7 +2,7 @@
 
 # Script Name:		VMware_VM_Storage_Utilization.ps1
 # Date Created:		02-April-2014
-# Author:			Frayne T.Nolasco
+# Author:	
 
 # Version History:	
 #					1.0 - 02-April-2014 - Initial script
@@ -51,7 +51,7 @@ if (!$bolVIM) {
 $startTime = Get-Date
 $myScriptLocation = Split-Path -Parent $MyInvocation.MyCommand.Path
 $thisReportDate = Get-Date -Format s
-$myCreds = Get-VICredentialStoreItem -File "$($myScriptLocation)\mcwojcik_vcenter-prod.xml"
+$myCreds = Get-VICredentialStoreItem -File "$($myScriptLocation)\creds.xml"
 $objMetrics = "disk.numberwrite.summation","disk.numberread.summation"
 
 #endregion #******** VARIABLES                          ********
@@ -94,7 +94,7 @@ $thisReport = ForEach ($vm in Get-VM) { $vm.ExtensionData.Guest.Disk |
 
 $c = $thisReport | Out-DataTable 
 
-Write-DataTable -ServerInstance "USEOMAPD998,1433" -Database "vCenter-Prod-Logs" -TableName "dbo.vm_disk_utilization" -Data $c -Username "VMwarewrite" -Password "P@55w0rd!"
+Write-DataTable -ServerInstance "SERVERNAME,port" -Database "DATABASE" -TableName "dbo.vm_disk_utilization" -Data $c -Username "Username" -Password "Password"
 
 #endregion ---- Get Datastore Information                    ----
 
